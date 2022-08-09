@@ -3,6 +3,11 @@ pipeline {
 //execution and that each stage directive must specify its own agent section.
     agent none
     stages {
+        
+         stage('Initialize'){
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+          }
         stage('Build') {
             agent {
                 docker {
